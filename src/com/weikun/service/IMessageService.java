@@ -11,4 +11,5 @@ public interface IMessageService {
 
     public boolean addMessage(Message1 m);
     public List<Message1> queryMessage() ;
+    public boolean delMessage(int id) ;
 }

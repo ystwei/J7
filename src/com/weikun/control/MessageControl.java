@@ -45,7 +45,6 @@ public class MessageControl extends javax.servlet.http.HttpServlet {
 
 
             if(service.addMessage(m)){//增加成功
-
                 dispatcher=request.getRequestDispatcher("message?action=query");
             }
         }else if(action.equals("query")){
@@ -53,6 +52,11 @@ public class MessageControl extends javax.servlet.http.HttpServlet {
             request.setAttribute("list",list);
 
             dispatcher=request.getRequestDispatcher("show.jsp");
+        }else if(action.equals("del")){
+            String id=request.getParameter("id");
+            if(service.delMessage(Integer.parseInt(id))){
+                dispatcher=request.getRequestDispatcher("message?action=query");
+            }
         }
         dispatcher.forward(request,response);
 

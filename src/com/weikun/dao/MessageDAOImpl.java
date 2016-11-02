@@ -65,6 +65,7 @@ public class MessageDAOImpl implements IMessageDAO {
 
             while(rs.next()){
                 Message1 m=new Message1();
+                m.setId(rs.getInt("id"));
                 m.setName(rs.getString("name"));
                 m.setEmail(rs.getString("email"));
                 m.setTitle(rs.getString("title"));
@@ -97,5 +98,35 @@ public class MessageDAOImpl implements IMessageDAO {
             DB.closeConnection(conn);
         }
         return list;
+    }
+
+    @Override
+    public boolean delMessage(int id) {
+        Connection conn= DB.getConnection();
+        PreparedStatement pstmt=null;
+        String sql="delete from message1 where id=?";
+        boolean flag=false;
+        try {
+            pstmt=conn.prepareStatement(sql);
+
+            pstmt.setInt(1,id);
+
+            flag=pstmt.executeUpdate()>0;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                }
+            }
+            DB.closeConnection(conn);
+        }
+        return flag;
     }
 }

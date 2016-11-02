@@ -23,4 +23,9 @@ public class MessageServiceImpl implements IMessageService {
     public List<Message1> queryMessage() {
         return dao.queryMessage();
     }
+
+    @Override
+    public boolean delMessage(int id) {
+        return dao.delMessage(id);
+    }
 }
