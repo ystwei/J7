@@ -1,0 +1,6 @@
+id：主键 int
+name：发布者
+email：发布者的邮箱
+title：帖子标题
+content：帖子内容
+date：发帖时间 date
